@@ -1,8 +1,9 @@
 #include "menu.h"
 #include "cardapio.h"
 #include "lista.h"
+#include "fila.h"
 
-void menu(No **cabeca) {
+void menu(Fila *f, No **cabeca) {
     int numero;
 
     while(1) {
@@ -11,6 +12,7 @@ void menu(No **cabeca) {
         printf("2. Remover pedido\n");
         printf("3. Exibir pedido\n");
         printf("4. Enviar pedido\n");
+        printf("5. Exibir fila\n");
         printf("\n");
         printf("Escolha uma opção para prosseguir: ");
 
@@ -22,14 +24,20 @@ void menu(No **cabeca) {
                 adicionar_pedido_inicio(cabeca);
                 break;
             case 2:
-                remover_pedido();
+                clear();
+                remover_pedido(cabeca);
                 break;
             case 3:
                 clear();
                 exibir_pedido(*cabeca);
                 break;
             case 4:
-                enviar_pedido();
+                clear();
+                enviar_pedido(f, *cabeca);
+                break;
+            case 5:
+                clear();
+                exibir_fila(f);
                 break;
             default:
                 clear();

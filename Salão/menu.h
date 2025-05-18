@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "lista.h"
 
-void menu(No **cabeca);
+void menu(Fila *fila, No **cabeca);
 void clear();
 
 #endif
