@@ -8,5 +8,6 @@ void iniciar_fila(Fila *f);
 void enviar_pedido(Fila *f, No **cabeca);
 void exibir_fila(Fila *f);
 bool esta_vazia(Fila *f);
+void remover_na_fila(Fila *f);
 
 #endif
