@@ -7,7 +7,7 @@ void iniciar_fila(Fila *f) {
 
 void enviar_pedido(Fila *f, No **cabeca) {
 
-    if (cabeca == NULL) {
+    if (*cabeca == NULL) {
         printf("--> Seu pedido está vazio.\n");
         return;
     }
@@ -22,6 +22,7 @@ void enviar_pedido(Fila *f, No **cabeca) {
 
         novo_no->item = atual->item;
         novo_no->proximo = NULL;
+        novo_no->identificador_mesa = atual->identificador_mesa;
         strcpy(novo_no->prato, atual->prato);
         
         if (esta_vazia(f)){
@@ -49,7 +50,7 @@ void exibir_fila(Fila *f) {
 
     No *temp = f->inicio;
     while(temp != NULL) {
-        printf("--> %s\n", temp->prato);
+        printf("--> %s --------Mesa %d\n", temp->prato, temp->identificador_mesa);
         temp = temp->proximo;
     }
 }
