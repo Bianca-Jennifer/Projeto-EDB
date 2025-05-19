@@ -9,6 +9,7 @@
 
 // Estrutura do pedido
 typedef struct no {
+    int item;
     char prato[45];
     struct no *proximo;
 } No;

@@ -23,6 +23,8 @@ void adicionar_pedido_inicio(No **cabeca) {
         return;
     }
 
+    novo_no->item = numero;
+
     const char *prato = converte_prato(numero);
     strncpy(novo_no->prato, prato, sizeof(novo_no->prato) - 1);
     novo_no->prato[sizeof(novo_no->prato) - 1] = '\0';
@@ -30,7 +32,7 @@ void adicionar_pedido_inicio(No **cabeca) {
     *cabeca = novo_no;
 
     clear();
-    printf("--> %s foi adicionado ao pedido.\n", prato);
+    printf("--> %s foi adicionado ao pedido!\n", prato);
 }
 
 // Remove qualquer prato da lista de pedidos
@@ -42,14 +44,14 @@ void remover_pedido(No **cabeca) {
 
     No *temp = *cabeca;
     *cabeca = (*cabeca)->proximo;
-    printf("--> %s foi removido do pedido com sucesso.\n", temp);
+    printf("--> %s foi removido do pedido com sucesso!\n", temp);
     free(temp);
 }
 
 // Imprime todos os pratos da lista de pedidos
 void exibir_pedido(No *cabeca) {
     if(cabeca == NULL) {
-        printf("--> O pedido está vazio.\n");
+        printf("--> O pedido está vazio!\n");
         return;
     }
 
