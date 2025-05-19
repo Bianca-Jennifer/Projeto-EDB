@@ -35,16 +35,16 @@ void adicionar_pedido_inicio(No **cabeca) {
     printf("--> %s foi adicionado ao pedido!\n", prato);
 }
 
-// Remove qualquer prato da lista de pedidos
+// Remove o primeiro prato da lista de pedidos
 void remover_pedido(No **cabeca) {
     if(*cabeca == NULL) {
-        printf("--> o Pedido está vazio.\n");
+        printf("--> O Pedido está vazio.\n");
         return;
     }
 
     No *temp = *cabeca;
     *cabeca = (*cabeca)->proximo;
-    printf("--> %s foi removido do pedido com sucesso!\n", temp);
+    printf("--> %s foi removido do pedido com sucesso!\n", temp->prato);
     free(temp);
 }
 
@@ -63,7 +63,6 @@ void exibir_pedido(No *cabeca) {
         printf("--> %s\n", atual->prato);
         atual = atual->proximo;
     }
-    printf("\n");
 }
 
 const char* converte_prato(int numero) {

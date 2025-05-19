@@ -6,5 +6,6 @@
 
 void menu(Fila *fila, No **cabeca);
 void clear();
+void pause();
 
 #endif
