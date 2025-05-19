@@ -1,32 +1,42 @@
 #include "fila.h"
-
+#include "string.h"
 void iniciar_fila(Fila *f) {
     f->inicio = NULL;
     f->fim = NULL;
 }
 
-void enviar_pedido(Fila *f, No *cabeca) {
-    if(cabeca == NULL) {
+void enviar_pedido(Fila *f, No **cabeca) {
+
+    if (cabeca == NULL) {
         printf("--> Seu pedido está vazio.\n");
         return;
     }
-    if(esta_vazia(f)) {
-        f->inicio = cabeca;
-    } else {
-        f->fim->proximo = cabeca;
-    }
 
-    No *anterior = NULL;
-    No *atual = cabeca;
+    No *atual = *cabeca;
+    while (atual != NULL) {
+        No *novo_no = (No *)malloc(sizeof(No));
+        if (!novo_no){
+            printf("  => Erro ao alocar memória!\n");
+            return;
+        }
 
-    while(atual->proximo != NULL) {
-        anterior = atual;
+        novo_no->item = atual->item;
+        novo_no->proximo = NULL;
+        strcpy(novo_no->prato, atual->prato);
+        
+        if (esta_vazia(f)){
+            f->inicio = novo_no;
+            f->fim = novo_no;
+        }else{
+            f->fim->proximo = novo_no;
+            f->fim = novo_no;
+        }
+
         atual = atual->proximo;
     }
 
-    f->fim = atual;
-
     printf("--> Seu pedido foi enviado para a cozinha!\n");
+    reiniciar_lista(cabeca);
 }
 
 void exibir_fila(Fila *f) {

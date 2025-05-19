@@ -46,12 +46,12 @@ void menu(Fila *f, No **cabeca) {
                             break;
                         case 4:
                             clear();
-                            enviar_pedido(f, *cabeca);
+                            enviar_pedido(f, cabeca);
                             break;
                         case 0:
-                            if(*cabeca == NULL) {
+                            if(*cabeca != NULL) {
                                 clear();
-                                printf("--> O pedido está vazio. Finalize o pedido antes de voltar ao menu inicial.\n");
+                                printf("--> O pedido ainda não foi enviado à cozinha. Finalize o pedido antes de voltar ao menu inicial.\n");
                                 numero_salao = -1;
                                 break;
                             }
