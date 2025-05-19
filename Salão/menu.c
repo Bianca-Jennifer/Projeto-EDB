@@ -19,8 +19,13 @@ void menu(Fila *f, No **cabeca) {
         switch(numero_menu) {
             case 1:
                 clear();
+
+                int identificador_mesa;
+                printf("Digite o número da mesa:");
+                scanf("%d",&identificador_mesa);
                 do {
                     printf("\n");
+                    printf("-----Mesa %d------\n", identificador_mesa);
                     printf("1. Adicionar pedido\n");
                     printf("2. Remover pedido\n");
                     printf("3. Exibir pedido\n");
@@ -34,7 +39,7 @@ void menu(Fila *f, No **cabeca) {
                     switch (numero_salao) {
                         case 1: 
                             clear();
-                            adicionar_pedido_inicio(cabeca);
+                            adicionar_pedido_inicio(cabeca, identificador_mesa);
                             break;
                         case 2:
                             clear();
@@ -47,6 +52,7 @@ void menu(Fila *f, No **cabeca) {
                         case 4:
                             clear();
                             enviar_pedido(f, cabeca);
+                            
                             break;
                         case 0:
                             if(*cabeca != NULL) {

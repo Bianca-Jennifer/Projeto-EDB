@@ -12,6 +12,7 @@
 typedef struct no {
     int item;
     char prato[45];
+    int identificador_mesa;
     struct no *proximo;
 } No;
 
@@ -20,7 +21,7 @@ typedef struct fila {
     No *fim;
 } Fila;
 
-void adicionar_pedido_inicio(No **cabeca);
+void adicionar_pedido_inicio(No **cabeca, int identificador_mesa);
 void remover_pedido(No **cabeca);
 void exibir_pedido(No *cabeca);
 const char* converte_prato(int numero);

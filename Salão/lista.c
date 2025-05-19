@@ -3,7 +3,7 @@
 
 // Insere um prato no início da lista de pedidos
 // Precisa ter um while para adicionar quantas vezes quiser
-void adicionar_pedido_inicio(No **cabeca) {
+void adicionar_pedido_inicio(No **cabeca, int identificador_mesa) {
     cardapio();
 
     printf("Escolha um item para adicionar: ");
@@ -24,6 +24,7 @@ void adicionar_pedido_inicio(No **cabeca) {
     }
 
     novo_no->item = numero;
+    novo_no->identificador_mesa = identificador_mesa;
 
     const char *prato = converte_prato(numero);
     strncpy(novo_no->prato, prato, sizeof(novo_no->prato) - 1);
