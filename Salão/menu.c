@@ -4,47 +4,98 @@
 #include "fila.h"
 
 void menu(Fila *f, No **cabeca) {
-    int numero;
+    int numero_menu, numero_salao, numero_cozinha;
 
-    while(1) {
+    do{
         printf("\n");
-        printf("1. Adicionar pedido\n");
-        printf("2. Remover pedido\n");
-        printf("3. Exibir pedido\n");
-        printf("4. Enviar pedido\n");
-        printf("5. Exibir fila\n");
+        printf("1. Salão\n");
+        printf("2. Cozinha\n");
+        printf("0. Sair do programa\n");
         printf("\n");
         printf("Escolha uma opção para prosseguir: ");
 
-        scanf("%d", &numero);
+        scanf("%d", &numero_menu);
 
-        switch (numero) {
-            case 1: 
+        switch(numero_menu) {
+            case 1:
                 clear();
-                adicionar_pedido_inicio(cabeca);
+                do {
+                    printf("\n");
+                    printf("1. Adicionar pedido\n");
+                    printf("2. Remover pedido\n");
+                    printf("3. Exibir pedido\n");
+                    printf("4. Enviar pedido\n");
+                    printf("0. Voltar ao menu inicial\n");
+                    printf("\n");
+                    printf("Escolha uma opção para prosseguir: ");
+
+                    scanf("%d", &numero_salao);
+
+                    switch (numero_salao) {
+                        case 1: 
+                            clear();
+                            adicionar_pedido_inicio(cabeca);
+                            break;
+                        case 2:
+                            clear();
+                            remover_pedido(cabeca);
+                            break;
+                        case 3:
+                            clear();
+                            exibir_pedido(*cabeca);
+                            break;
+                        case 4:
+                            clear();
+                            enviar_pedido(f, *cabeca);
+                            break;
+                        case 0:
+                            if(*cabeca == NULL) {
+                                clear();
+                                printf("--> O pedido está vazio. Finalize o pedido antes de voltar ao menu inicial.\n");
+                                numero_salao = -1;
+                                break;
+                            }
+                            else {
+                                numero_salao = 0;
+                                clear();
+                                break;
+                            }
+                        default:
+                            clear();
+                            printf("Opção inválida. Por favor, tente novamente.\n");
+                    }
+                } while(numero_salao != 0);
                 break;
             case 2:
                 clear();
-                remover_pedido(cabeca);
+                do {
+                    printf("\n");
+                    printf("1. Exibir pedidos na cozinha\n");
+                    printf("0. Voltar ao menu principal\n");
+                    printf("\n");
+                    printf("Escolha uma opção para prosseguir: ");
+                    
+                    scanf("%d", &numero_cozinha);
+
+                    switch(numero_cozinha) {
+                        case 1:
+                            clear();
+                            exibir_fila(f);
+                            break;
+                        case 0:
+                            numero_cozinha = 0;
+                            clear();
+                            break;
+                        default:
+                            clear();
+                            printf("Opção inválida. Por favor, tente novamente.\n");
+                    }
+                } while(numero_cozinha != 0);
                 break;
             case 3:
-                clear();
-                exibir_pedido(*cabeca);
-                break;
-            case 4:
-                clear();
-                enviar_pedido(f, *cabeca);
-                break;
-            case 5:
-                clear();
-                exibir_fila(f);
-                break;
-            default:
-                clear();
-                printf("Opção inválida. Por favor, tente novamente.\n");
-        }
-
-    }
+                numero_menu = 0;
+        } 
+    } while(numero_menu != 3);
 }
 
 void clear() {
@@ -53,4 +104,9 @@ void clear() {
     #else
         system("clear");
     #endif
+}
+
+void pause() {
+    printf("Pressione Enter para voltar.\n");
+    getchar();
 }
