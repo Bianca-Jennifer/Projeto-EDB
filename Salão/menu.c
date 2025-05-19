@@ -33,7 +33,7 @@ void menu(Fila *f, No **cabeca) {
                 break;
             case 4:
                 clear();
-                enviar_pedido(f, *cabeca);
+                enviar_pedido(f, cabeca);
                 break;
             case 5:
                 clear();

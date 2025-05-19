@@ -24,5 +24,6 @@ void remover_pedido(No **cabeca);
 void exibir_pedido(No *cabeca);
 const char* converte_prato(int numero);
 void percorrer_lista(No *cabeca);
+void reiniciar_lista(No **cabeca);
 
 #endif

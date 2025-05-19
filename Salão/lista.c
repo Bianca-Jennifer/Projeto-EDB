@@ -85,3 +85,14 @@ const char* converte_prato(int numero) {
         case 15: return "Sorvete de Baunilha com Calda de Morango";
     }
 }
+
+void reiniciar_lista(No **cabeca) {
+    No *atual = *cabeca;
+
+    while (atual != NULL) {
+        No *vari_liberada = atual;
+        atual = atual->proximo;
+        free(vari_liberada);
+    }
+    *cabeca = NULL;  
+}
