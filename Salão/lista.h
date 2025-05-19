@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "cardapio.h"
 
 
@@ -25,5 +26,6 @@ void exibir_pedido(No *cabeca);
 const char* converte_prato(int numero);
 void percorrer_lista(No *cabeca);
 void reiniciar_lista(No **cabeca);
+bool lista_vazia(No **cabeca);
 
 #endif
