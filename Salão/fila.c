@@ -58,3 +58,23 @@ void exibir_fila(Fila *f) {
 bool esta_vazia(Fila *f) {
   return f->inicio == NULL;
 }
+
+void remover_na_fila(Fila *f){
+  if(esta_vazia(f)){
+    printf("  => Não há nenhum pedido na cozinha!\n");
+    return;
+  }
+ 
+  No *temp = f->inicio;
+
+  f->inicio = f->inicio->proximo;
+
+  if(f->inicio == NULL)
+    f->fim = NULL;
+
+  free(temp);
+
+  printf("  => Pedido removido!\n");
+ 
+  return;
+}
