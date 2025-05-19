@@ -16,6 +16,7 @@ void adicionar_pedido_inicio(No **cabeca) {
         return;
     }
 
+
     No *novo_no = malloc(sizeof(No));
     if(novo_no == NULL) {
         printf("  => Erro ao alocar memória!\n");
@@ -29,30 +30,30 @@ void adicionar_pedido_inicio(No **cabeca) {
     *cabeca = novo_no;
 
     clear();
-    printf("--> %s foi adicionado ao seu pedido!\n", prato);
+    printf("--> %s foi adicionado ao pedido.\n", prato);
 }
 
 // Remove qualquer prato da lista de pedidos
 void remover_pedido(No **cabeca) {
     if(*cabeca == NULL) {
-        printf("--> Seu pedido está vazio.\n");
+        printf("--> o Pedido está vazio.\n");
         return;
     }
 
     No *temp = *cabeca;
     *cabeca = (*cabeca)->proximo;
-    printf("%s foi removido do seu pedido com sucesso!\n", temp);
+    printf("--> %s foi removido do pedido com sucesso.\n", temp);
     free(temp);
 }
 
 // Imprime todos os pratos da lista de pedidos
 void exibir_pedido(No *cabeca) {
     if(cabeca == NULL) {
-        printf("--> Seu pedido está vazio.\n");
+        printf("--> O pedido está vazio.\n");
         return;
     }
 
-    printf("Seu pedido:\n");
+    printf("Pedido:\n");
 
     No *atual = cabeca;
     

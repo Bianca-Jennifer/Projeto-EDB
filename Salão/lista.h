@@ -19,7 +19,7 @@ typedef struct fila {
 } Fila;
 
 void adicionar_pedido_inicio(No **cabeca);
-void remover_pedido();
+void remover_pedido(No **cabeca);
 void exibir_pedido(No *cabeca);
 const char* converte_prato(int numero);
 void percorrer_lista(No *cabeca);
