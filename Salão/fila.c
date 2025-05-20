@@ -97,19 +97,28 @@ void buscar_na_fila(Fila *f){
     }
   
     No *temp = f->inicio;
+    char prato[45];
 
-    int cond = 0;
+    int cond_cont = 0;
     while(temp != NULL){
         if (temp->item == item & temp->identificador_mesa == identificador_mesa) {
-            cond++;
-            printf("--> %s --------Mesa %d\n", temp->prato, temp->identificador_mesa);
+            cond_cont++;
+            if (cond_cont) strcpy(prato, temp->prato);
         }
         temp = temp->proximo;
     }
 
-    if (cond == 0) {
+    if (cond_cont == 0) {
         printf("o pedido não existe na cozinha!\n");
+    } else {
+        if (cond_cont == 1) {
+            printf("\n1 pedido encontrado!\n");
+        } else {
+            printf("\n%d pedidos encontrados!\n", cond_cont);
+        }
     }
+
+    printf("--> %s --------Mesa %d\n", prato, identificador_mesa);
 
     printf("\n");
 
