@@ -36,6 +36,45 @@ void adicionar_pedido_inicio(No **cabeca, int identificador_mesa) {
     printf("--> %s foi adicionado ao pedido!\n", prato);
 }
 
+void adicionar_pedido_fim(No **cabeca, int identificador_mesa) {
+    cardapio();
+
+    printf("Escolha um item para adicionar: ");
+    int numero;
+    scanf("%d", &numero);
+
+    if(numero < 1 || numero > 15) {
+        clear();
+        printf("Este item não está no cardápio... Por favor, Tente novamente.\n");
+        return;
+    }
+
+    No *novo_no = malloc(sizeof(No));
+    if(novo_no == NULL) {
+    printf("  => Erro ao alocar memória!\n");
+    return;
+    }
+
+    novo_no->item = numero;
+    novo_no->identificador_mesa = identificador_mesa;
+
+    const char *prato = converte_prato(numero);
+    strncpy(novo_no->prato, prato, sizeof(novo_no->prato) - 1);
+    novo_no->prato[sizeof(novo_no->prato) - 1] = '\0';
+    novo_no->proximo = NULL;
+
+    No *atual = *cabeca;
+
+    while(atual->proximo != NULL) {
+        atual = atual->proximo;
+    }
+
+    atual->proximo = novo_no;
+
+    clear();
+    printf("--> %s foi adicionado ao pedido!\n", prato);
+}
+
 // Remove o primeiro prato da lista de pedidos
 void remover_pedido(No **cabeca) {
     if(*cabeca == NULL) {

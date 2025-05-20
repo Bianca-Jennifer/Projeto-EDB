@@ -36,7 +36,7 @@ void enviar_pedido(Fila *f, No **cabeca) {
         atual = atual->proximo;
     }
 
-    printf("--> Seu pedido foi enviado para a cozinha!\n");
+    printf("--> O pedido foi enviado para a cozinha!\n");
     reiniciar_lista(cabeca);
 }
 
@@ -50,7 +50,7 @@ void exibir_fila(Fila *f) {
 
     No *temp = f->inicio;
     while(temp != NULL) {
-        printf("--> %s --------Mesa %d\n", temp->prato, temp->identificador_mesa);
+        printf("--> %s -------- Mesa %d\n", temp->prato, temp->identificador_mesa);
         temp = temp->proximo;
     }
 }
