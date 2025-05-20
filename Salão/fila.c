@@ -1,5 +1,7 @@
 #include "fila.h"
+#include "menu.h"
 #include "string.h"
+
 void iniciar_fila(Fila *f) {
     f->inicio = NULL;
     f->fim = NULL;
@@ -36,7 +38,7 @@ void enviar_pedido(Fila *f, No **cabeca) {
         atual = atual->proximo;
     }
 
-    printf("--> Seu pedido foi enviado para a cozinha!\n");
+    printf("--> O pedido foi enviado para a cozinha!\n");
     reiniciar_lista(cabeca);
 }
 
@@ -50,7 +52,7 @@ void exibir_fila(Fila *f) {
 
     No *temp = f->inicio;
     while(temp != NULL) {
-        printf("--> %s --------Mesa %d\n", temp->prato, temp->identificador_mesa);
+        printf("--> %s -------- Mesa %d\n", temp->prato, temp->identificador_mesa);
         temp = temp->proximo;
     }
 }
@@ -74,7 +76,7 @@ void remover_na_fila(Fila *f){
 
   free(temp);
 
-  printf("  => Pedido removido!\n");
+  printf("--> Pedido removido!\n");
  
   return;
 }
@@ -82,17 +84,17 @@ void remover_na_fila(Fila *f){
 void buscar_na_fila(Fila *f){
 
     int identificador_mesa;
-    printf("Digite o número da mesa:");
+    printf("Digite o número da mesa: ");
     scanf("%d", &identificador_mesa);
     printf("\n\n");
 
     int item;
     cardapio();
-    printf("\nDigite o item que deseja verificar:");
+    printf("\nDigite o item que deseja verificar: ");
     scanf("%d", &item);
 
     if(esta_vazia(f)){
-    printf("  => Não há nenhum pedido na cozinha!\n");
+    printf("--> Não há nenhum pedido na cozinha!\n");
     return;
     }
   
@@ -108,18 +110,19 @@ void buscar_na_fila(Fila *f){
         temp = temp->proximo;
     }
 
+    clear();
+
     if (cond_cont == 0) {
-        printf("o pedido não existe na cozinha!\n");
+        printf("--> O pedido não existe na cozinha!\n");
     } else {
         if (cond_cont == 1) {
             printf("\n1 pedido encontrado!\n");
+            printf("--> %s -------- Mesa %d\n", prato, identificador_mesa);
+
         } else {
             printf("\n%d pedidos encontrados!\n", cond_cont);
+            printf("--> %s -------- Mesa %d\n", prato, identificador_mesa);
+
         }
     }
-
-    printf("--> %s --------Mesa %d\n", prato, identificador_mesa);
-
-    printf("\n");
-
 }
