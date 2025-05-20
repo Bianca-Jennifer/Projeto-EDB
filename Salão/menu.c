@@ -8,6 +8,8 @@ void menu(Fila *f, No **cabeca) {
     int numero_menu_adicionar = -1;
     int numero_menu_remover = -1;
 
+    clear();
+
     do {
         printf("\n");
         printf("1. Salão\n");
@@ -41,6 +43,7 @@ void menu(Fila *f, No **cabeca) {
                     switch (numero_salao) {
                         case 1: 
                             clear();
+
                             if(*cabeca == NULL) {
                                 adicionar_pedido_inicio(cabeca, identificador_mesa);
                             }
@@ -82,11 +85,13 @@ void menu(Fila *f, No **cabeca) {
                         case 2:
                             clear();
 
-                            if(*cabeca == NULL) {
-                                remover_pedido_inicio(cabeca);
-                            }
-
                             do {
+                                if(*cabeca == NULL) {
+                                    remover_pedido_inicio(cabeca);
+                                    numero_menu_remover = 0;
+                                    break;
+                                }
+
                                 printf("\n");
                                 printf("1. Remover pedido no início\n");
                                 printf("2. Remover pedido no meio\n");
