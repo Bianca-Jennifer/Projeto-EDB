@@ -52,7 +52,7 @@ void menu(Fila *f, No **cabeca) {
                         case 4:
                             clear();
                             enviar_pedido(f, cabeca);
-                            
+                            numero_salao = 0;
                             break;
                         case 0:
                             if(*cabeca != NULL) {
@@ -78,6 +78,7 @@ void menu(Fila *f, No **cabeca) {
                     printf("\n");
                     printf("1. Exibir pedidos na cozinha\n");
                     printf("2. Remover pedido na cozinha\n");
+                    printf("3. Verificar pedido na cozinha\n");
                     printf("0. Voltar ao menu principal\n");
                     printf("\n");
                     printf("Escolha uma opção para prosseguir: ");
@@ -92,7 +93,11 @@ void menu(Fila *f, No **cabeca) {
                         case 2:
                             clear();
                             remover_na_fila(f);
-                            break;    
+                            break;
+                        case 3:
+                            clear();
+                            buscar_na_fila(f);
+                            break;          
                         case 0:
                             numero_cozinha = 0;
                             clear();
