@@ -78,3 +78,39 @@ void remover_na_fila(Fila *f){
  
   return;
 }
+
+void buscar_na_fila(Fila *f){
+
+    int identificador_mesa;
+    printf("Digite o número da mesa:");
+    scanf("%d", &identificador_mesa);
+    printf("\n\n");
+
+    int item;
+    cardapio();
+    printf("\nDigite o item que deseja verificar:");
+    scanf("%d", &item);
+
+    if(esta_vazia(f)){
+    printf("  => Não há nenhum pedido na cozinha!\n");
+    return;
+    }
+  
+    No *temp = f->inicio;
+
+    int cond = 0;
+    while(temp != NULL){
+        if (temp->item == item & temp->identificador_mesa == identificador_mesa) {
+            cond++;
+            printf("--> %s --------Mesa %d\n", temp->prato, temp->identificador_mesa);
+        }
+        temp = temp->proximo;
+    }
+
+    if (cond == 0) {
+        printf("o pedido não existe na cozinha!\n");
+    }
+
+    printf("\n");
+
+}
