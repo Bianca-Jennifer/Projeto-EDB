@@ -4,9 +4,11 @@
 #include "fila.h"
 
 void menu(Fila *f, No **cabeca) {
-    int numero_menu, numero_salao, numero_cozinha, numero_menu_adicionar, numero_adicionar;
+    int numero_menu, numero_salao, numero_cozinha, numero_adicionar, numero_remover;
+    int numero_menu_adicionar = -1;
+    int numero_menu_remover = -1;
 
-    do{
+    do {
         printf("\n");
         printf("1. Salão\n");
         printf("2. Cozinha\n");
@@ -25,7 +27,7 @@ void menu(Fila *f, No **cabeca) {
                 scanf("%d",&identificador_mesa);
                 do {
                     printf("\n");
-                    printf("-----Mesa %d------\n", identificador_mesa);
+                    printf("============== Mesa %d ==============\n", identificador_mesa);
                     printf("1. Adicionar pedido\n");
                     printf("2. Remover pedido\n");
                     printf("3. Exibir pedido\n");
@@ -71,13 +73,52 @@ void menu(Fila *f, No **cabeca) {
                                         numero_menu_adicionar = 0;
                                         clear();
                                         break;
+                                    default:
+                                        clear();
+                                        printf("Opção inválida. Por favor, tente novamente.\n");
                                 }
                             } while (numero_menu_adicionar != 0);
-                            break;
-                                
+                            break;       
                         case 2:
                             clear();
-                            remover_pedido(cabeca);
+
+                            if(*cabeca == NULL) {
+                                remover_pedido_inicio(cabeca);
+                            }
+
+                            do {
+                                printf("\n");
+                                printf("1. Remover pedido no início\n");
+                                printf("2. Remover pedido no meio\n");
+                                printf("3. Removerr pedido no fim\n");
+                                printf("0. Voltar ao menu\n");
+                                printf("\n");
+                                printf("Escolha uma opção para prosseguir: ");
+
+                                scanf("%d", &numero_remover);
+
+                                switch(numero_remover) {
+                                    case 1:
+                                        clear();
+                                        remover_pedido_inicio(cabeca);
+                                        break;
+                                    case 2: 
+                                        clear();
+                                        //remover_pedido_meio(cabeca);
+                                        break;
+                                    case 3:
+                                        clear();
+                                        remover_pedido_fim(cabeca);
+                                        break;
+                                    case 0:
+                                        numero_menu_remover = 0;
+                                        clear();
+                                        break;
+                                    default:
+                                    clear();
+                                    printf("Opção inválida. Por favor, tente novamente.\n");
+                                }
+                            } while (numero_menu_remover != 0);
                             break;
                         case 3:
                             clear();

@@ -37,6 +37,11 @@ void adicionar_pedido_inicio(No **cabeca, int identificador_mesa) {
 }
 
 void adicionar_pedido_fim(No **cabeca, int identificador_mesa) {
+    if(*cabeca == NULL) {
+        adicionar_pedido_inicio(cabeca, identificador_mesa);
+        return;
+    }
+
     cardapio();
 
     printf("Escolha um item para adicionar: ");
@@ -76,7 +81,7 @@ void adicionar_pedido_fim(No **cabeca, int identificador_mesa) {
 }
 
 // Remove o primeiro prato da lista de pedidos
-void remover_pedido(No **cabeca) {
+void remover_pedido_inicio(No **cabeca) {
     if(*cabeca == NULL) {
         printf("--> O Pedido está vazio.\n");
         return;
@@ -86,6 +91,25 @@ void remover_pedido(No **cabeca) {
     *cabeca = (*cabeca)->proximo;
     printf("--> %s foi removido do pedido com sucesso!\n", temp->prato);
     free(temp);
+}
+
+void remover_pedido_fim(No **cabeca) {
+    if(*cabeca == NULL || (*cabeca)->proximo == NULL) {
+        remover_pedido_inicio(cabeca);
+        return;
+    }
+
+    No *anterior = NULL;
+    No *atual = *cabeca;
+
+    while(atual->proximo != NULL) {
+        anterior = atual;
+        atual = atual->proximo;
+    }
+
+    anterior->proximo = NULL;
+    printf("--> %s foi removido do pedido com sucesso!\n", atual->prato);
+    free(atual);
 }
 
 // Imprime todos os pratos da lista de pedidos
