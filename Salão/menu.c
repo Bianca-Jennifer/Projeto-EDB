@@ -172,6 +172,7 @@ void menu(Fila *f, No **cabeca) {
                         case 3:
                             clear();
                             busca_na_fila(f);
+                            clear();
                             break;          
                         case 0:
                             numero_cozinha = 0;

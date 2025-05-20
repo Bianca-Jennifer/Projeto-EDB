@@ -134,6 +134,8 @@ void busca_geral_na_fila(Fila *f) {
     printf("\nDigite o item que deseja verificar: ");
     scanf("%d", &item);
 
+    clear();
+
     if(esta_vazia(f)){
     printf("--> Não há nenhum pedido na cozinha!\n");
     return;
@@ -153,8 +155,6 @@ void busca_geral_na_fila(Fila *f) {
         temp = temp->proximo;
     }
 
-    //clear();
-
     if (cond_cont == 0) {
         printf("--> O pedido não existe na cozinha!\n");
     } 
@@ -162,24 +162,30 @@ void busca_geral_na_fila(Fila *f) {
 
 void busca_na_fila(Fila *f){
     int op;
-    printf("Selecione uma opção\n");
-    printf("\n");
-    printf("1. Busca geral\n");
-    printf("2. Busca por mesa\n");
-    printf("0. Voltar\n");
-    scanf("%d",&op);
 
-    //while
-    switch(op) {
-        case 1:
-            clear();
-            busca_geral_na_fila(f);
-            break;
-        case 2: 
-            clear();
-            busca_por_mesa_na_fila(f);
-            break;
-        
-      
-    }          
+    do {
+        printf("\n");
+        printf("1. Busca geral\n");
+        printf("2. Busca por mesa\n");
+        printf("0. Voltar\n");
+        printf("\nEscolha uma opção para prosseguir: \n");
+
+        scanf("%d",&op);
+        //while
+        switch(op) {
+            case 1:
+                clear();
+                busca_geral_na_fila(f);
+                break;
+            case 2: 
+                clear();
+                busca_por_mesa_na_fila(f);
+                break;
+            case 0:
+                break;
+            default:
+                clear();
+                printf("Opção inválida. Por favor, tente novamente.\n");
+        }
+    } while(op != 0);
 }
