@@ -45,6 +45,8 @@ void menu(Fila *f, No **cabeca) {
 
                             if(*cabeca == NULL) {
                                 adicionar_pedido_inicio(cabeca, identificador_mesa);
+                                //numero_tipo_adicao = 0;
+                                break;
                             }
 
                             if(*cabeca == NULL) {
@@ -66,9 +68,11 @@ void menu(Fila *f, No **cabeca) {
                                     case 1:
                                         clear();
                                         adicionar_pedido_fim(cabeca, identificador_mesa);
+                                        numero_tipo_adicao = 0;
                                         break;
                                     case 2:
                                         clear();
+                                        printf("\n");
                                         printf("\n");
                                         printf("1. Adicionar pedido no início\n");
                                         printf("2. Adicionar pedido no meio\n");
@@ -82,6 +86,7 @@ void menu(Fila *f, No **cabeca) {
                                             case 1:
                                                 clear();
                                                 adicionar_pedido_inicio(cabeca, identificador_mesa);
+                                                numero_tipo_adicao = 0;
                                                 break;
                                             case 2: 
                                                 clear();
@@ -90,6 +95,7 @@ void menu(Fila *f, No **cabeca) {
                                             case 3:
                                                 clear();
                                                 adicionar_pedido_fim(cabeca, identificador_mesa);
+                                                numero_tipo_adicao = 0;
                                                 break;
                                             case 0:
                                                 clear();
