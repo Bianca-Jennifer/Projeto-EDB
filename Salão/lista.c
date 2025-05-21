@@ -19,7 +19,7 @@ void adicionar_pedido_inicio(No **cabeca, int identificador_mesa) {
 
     No *novo_no = malloc(sizeof(No));
     if(novo_no == NULL) {
-        printf("  => Erro ao alocar memória!\n");
+        printf("--> Erro ao alocar memória!\n");
         return;
     }
 
