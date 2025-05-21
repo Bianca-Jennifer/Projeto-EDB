@@ -159,3 +159,7 @@ void reiniciar_lista(No **cabeca) {
     }
     *cabeca = NULL;  
 }
+
+bool lista_unitara(No *cabeca) {
+    return cabeca->proximo == NULL;
+}

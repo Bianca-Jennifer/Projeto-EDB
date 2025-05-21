@@ -118,6 +118,9 @@ void menu(Fila *f, No **cabeca) {
                                     break;
                                 }
 
+                                if(lista_unitara(*cabeca)) {
+                                    remover_pedido_inicio;
+                                }
                                 // if() SE O PROXIMO DE CABEÇA FOR NULL, ENTÃO REMOVER_PEDIDO_INICIO();
 
                                 exibir_pedido(*cabeca);
