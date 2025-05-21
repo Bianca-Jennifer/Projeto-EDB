@@ -23,6 +23,14 @@ void adicionar_pedido_inicio(No **cabeca, int identificador_mesa) {
         return;
     }
 
+    if (numero >= 1 && numero <= 5) {
+        novo_no->tipo = 'E';
+    } else if (numero >= 6 && numero <= 10) {
+        novo_no->tipo = 'P';
+    } else if (numero >= 11 && numero <= 15) {
+        novo_no->tipo = 'S';
+    }
+
     novo_no->item = numero;
     novo_no->identificador_mesa = identificador_mesa;
 
@@ -31,14 +39,6 @@ void adicionar_pedido_inicio(No **cabeca, int identificador_mesa) {
     novo_no->prato[sizeof(novo_no->prato) - 1] = '\0';
     novo_no->proximo = *cabeca;
     *cabeca = novo_no;
-
-    if (numero >= 1 && numero <= 5) {
-        novo_no->tipo = 'E';
-    } else if (numero >= 6 && numero <= 10) {
-            novo_no->tipo = 'P';
-    } else{
-            novo_no->tipo = 'S';
-    }
 
     clear();
     printf("--> %s foi adicionado ao pedido!\n", prato);
@@ -66,6 +66,14 @@ void adicionar_pedido_fim(No **cabeca, int identificador_mesa) {
     if(novo_no == NULL) {
     printf("  => Erro ao alocar memória!\n");
     return;
+    }
+
+    if (numero >= 1 && numero <= 5) {
+        novo_no->tipo = 'E';
+    } else if (numero >= 6 && numero <= 10) {
+        novo_no->tipo = 'P';
+    } else if (numero >= 11 && numero <= 15) {
+        novo_no->tipo = 'S';
     }
 
     novo_no->item = numero;

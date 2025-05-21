@@ -49,12 +49,6 @@ void menu(Fila *f, No **cabeca) {
                                 break;
                             }
 
-                            if(*cabeca == NULL) {
-                                clear();
-                                printf("Este item não está no cardápio... Por favor, Tente novamente.\n");
-                                break;
-                            }
-
                             do {
                                 printf("\n");
                                 exibir_pedido(*cabeca);
@@ -106,7 +100,7 @@ void menu(Fila *f, No **cabeca) {
                                                 printf("Opção inválida. Por favor, tente novamente.\n");
                                         }
                                     case 0:
-                                        clear();
+                                        clear(); // ESSE AQUI TA FODA
                                         numero_tipo_adicao = 0;
                                         break;
                                     default:
