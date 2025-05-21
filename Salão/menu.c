@@ -6,15 +6,17 @@
 void menu(Fila *f, No **cabeca) {
     int numero_menu, numero_salao, numero_cozinha, numero_adicionar, numero_remover;
     int numero_menu_adicionar = -1;
+    int numero_tipo_adicao = -1;
     int numero_menu_remover = -1;
+
+    clear();
 
     do {
         printf("\n");
         printf("1. Salão\n");
         printf("2. Cozinha\n");
         printf("0. Sair do programa\n");
-        printf("\n");
-        printf("Escolha uma opção para prosseguir: ");
+        printf("\nEscolha uma opção para prosseguir: ");
 
         scanf("%d", &numero_menu);
 
@@ -33,67 +35,103 @@ void menu(Fila *f, No **cabeca) {
                     printf("3. Exibir pedido\n");
                     printf("4. Enviar pedido\n");
                     printf("0. Voltar ao menu inicial\n");
-                    printf("\n");
-                    printf("Escolha uma opção para prosseguir: ");
+                    printf("\nEscolha uma opção para prosseguir: ");
 
                     scanf("%d", &numero_salao);
 
                     switch (numero_salao) {
                         case 1: 
                             clear();
+
                             if(*cabeca == NULL) {
                                 adicionar_pedido_inicio(cabeca, identificador_mesa);
                             }
 
-                            do {
-                                printf("\n");
-                                printf("1. Adicionar pedido no início\n");
-                                printf("2. Adicionar pedido no meio\n");
-                                printf("3. Adicionar pedido no fim\n");
-                                printf("0. Voltar ao menu\n");
-                                printf("\n");
-                                printf("Escolha uma opção para prosseguir: ");
-
-                                scanf("%d", &numero_adicionar);
-
-                                switch(numero_adicionar) {
-                                    case 1:
-                                        clear();
-                                        adicionar_pedido_inicio(cabeca, identificador_mesa);
-                                        break;
-                                    case 2: 
-                                        clear();
-                                        //adicionar_pedido_meio(cabeca, identificador_mesa);
-                                        break;
-                                    case 3:
-                                        clear();
-                                        adicionar_pedido_fim(cabeca, identificador_mesa);
-                                        break;
-                                    case 0:
-                                        numero_menu_adicionar = 0;
-                                        clear();
-                                        break;
-                                    default:
-                                        clear();
-                                        printf("Opção inválida. Por favor, tente novamente.\n");
-                                }
-                            } while (numero_menu_adicionar != 0);
-                            break;       
-                        case 2:
-                            clear();
-
                             if(*cabeca == NULL) {
-                                remover_pedido_inicio(cabeca);
+                                clear();
+                                printf("Este item não está no cardápio... Por favor, Tente novamente.\n");
+                                break;
                             }
 
                             do {
                                 printf("\n");
+                                printf("1. Adição direta\n");
+                                printf("2. Adição manual\n");
+                                printf("0. Voltar ao menu\n");
+                                printf("\nEscolha uma opção para prosseguir: ");
+
+                                scanf("%d", &numero_tipo_adicao);
+
+                                switch(numero_tipo_adicao) {
+                                    case 1:
+                                        clear();
+                                        adicionar_pedido_fim(cabeca, identificador_mesa);
+                                        break;
+                                    case 2:
+                                        clear();
+                                        printf("\n");
+                                        printf("1. Adicionar pedido no início\n");
+                                        printf("2. Adicionar pedido no meio\n");
+                                        printf("3. Adicionar pedido no fim\n");
+                                        printf("0. Voltar ao menu\n");
+                                        printf("\nEscolha uma opção para prosseguir: ");
+
+                                        scanf("%d", &numero_adicionar);
+
+                                        switch(numero_adicionar) {
+                                            case 1:
+                                                clear();
+                                                adicionar_pedido_inicio(cabeca, identificador_mesa);
+                                                break;
+                                            case 2: 
+                                                clear();
+                                                //adicionar_pedido_meio(cabeca, identificador_mesa);
+                                                break;
+                                            case 3:
+                                                clear();
+                                                adicionar_pedido_fim(cabeca, identificador_mesa);
+                                                break;
+                                            case 0:
+                                                clear();
+                                                break;
+                                            default:
+                                                clear();
+                                                printf("Opção inválida. Por favor, tente novamente.\n");
+                                        }
+                                    case 0:
+                                        clear();
+                                        numero_tipo_adicao = 0;
+                                        break;
+                                    default:
+                                        clear();
+                                        printf("Opção inválida. Por favor, tente novamente.\n");
+                                }                                        
+                            } while (numero_tipo_adicao != 0);
+                            break;
+                        case 2:
+                            clear();
+
+                            do {
+                                if(*cabeca == NULL) {
+                                    remover_pedido_inicio(cabeca);
+                                    numero_menu_remover = 0;
+                                    break;
+                                }
+
+                                if(lista_unitaria(*cabeca)) {
+                                    remover_pedido_inicio(cabeca);
+                                    printf("--> O pedido agora está vazio.\n");
+                                    numero_menu_remover = 0;
+                                    break;
+                                }
+
+                                exibir_pedido(*cabeca);
+                                printf("\n");
                                 printf("1. Remover pedido no início\n");
                                 printf("2. Remover pedido no meio\n");
-                                printf("3. Removerr pedido no fim\n");
+                                printf("3. Remover pedido no fim\n");
                                 printf("0. Voltar ao menu\n");
-                                printf("\n");
-                                printf("Escolha uma opção para prosseguir: ");
+                                printf("\nEscolha uma opção para prosseguir: ");
 
                                 scanf("%d", &numero_remover);
 
@@ -155,8 +193,7 @@ void menu(Fila *f, No **cabeca) {
                     printf("2. Remover pedido na cozinha\n");
                     printf("3. Verificar pedido na cozinha\n");
                     printf("0. Voltar ao menu principal\n");
-                    printf("\n");
-                    printf("Escolha uma opção para prosseguir: ");
+                    printf("\nEscolha uma opção para prosseguir: ");
                     
                     scanf("%d", &numero_cozinha);
 
@@ -184,8 +221,12 @@ void menu(Fila *f, No **cabeca) {
                     }
                 } while(numero_cozinha != 0);
                 break;
-            case 3:
+            case 0:
                 numero_menu = 0;
+                break;
+            default:
+                clear();
+                printf("Opção inválida. Por favor, tente novamente.\n");
         } 
     } while(numero_menu != 0);
 }
