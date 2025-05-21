@@ -139,14 +139,17 @@ void menu(Fila *f, No **cabeca) {
                                     case 1:
                                         clear();
                                         remover_pedido_inicio(cabeca);
+                                        numero_menu_remover = 0;
                                         break;
                                     case 2: 
                                         clear();
                                         //remover_pedido_meio(cabeca);
+                                        numero_menu_remover = 0;
                                         break;
                                     case 3:
                                         clear();
                                         remover_pedido_fim(cabeca);
+                                        numero_menu_remover = 0;
                                         break;
                                     case 0:
                                         numero_menu_remover = 0;
