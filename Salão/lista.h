@@ -29,5 +29,6 @@ const char* converte_prato(int numero);
 void percorrer_lista(No *cabeca);
 void reiniciar_lista(No **cabeca);
 bool lista_vazia(No **cabeca);
+bool lista_unitaria(No *cabeca);
 
 #endif

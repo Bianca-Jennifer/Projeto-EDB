@@ -19,7 +19,7 @@ void adicionar_pedido_inicio(No **cabeca, int identificador_mesa) {
 
     No *novo_no = malloc(sizeof(No));
     if(novo_no == NULL) {
-        printf("  => Erro ao alocar memória!\n");
+        printf("--> Erro ao alocar memória!\n");
         return;
     }
 
@@ -158,4 +158,8 @@ void reiniciar_lista(No **cabeca) {
         free(vari_liberada);
     }
     *cabeca = NULL;  
+}
+
+bool lista_unitaria(No *cabeca) {
+    return cabeca->proximo == NULL;
 }
