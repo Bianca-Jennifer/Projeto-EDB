@@ -4,7 +4,8 @@
 #include "fila.h"
 
 void menu(Fila *f, No **cabeca) {
-    int numero_menu, numero_salao, numero_cozinha, numero_adicionar, numero_remover;
+    int numero_menu, numero_salao, numero_cozinha, numero_remover;
+    int numero_adicionar = -1;
     int numero_menu_adicionar = -1;
     int numero_tipo_adicao = -1;
     int numero_menu_remover = -1;
@@ -94,11 +95,13 @@ void menu(Fila *f, No **cabeca) {
                                                 break;
                                             case 0:
                                                 clear();
+                                                numero_tipo_adicao = 0;
                                                 break;
                                             default:
                                                 clear();
                                                 printf("Opção inválida. Por favor, tente novamente.\n");
                                         }
+                                        break;
                                     case 0:
                                         clear(); // ESSE AQUI TA FODA
                                         numero_tipo_adicao = 0;
@@ -111,7 +114,6 @@ void menu(Fila *f, No **cabeca) {
                             break;
                         case 2:
                             clear();
-
                             do {
                                 if(*cabeca == NULL) {
                                     remover_pedido_inicio(cabeca);
