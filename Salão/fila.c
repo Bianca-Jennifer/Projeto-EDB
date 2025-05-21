@@ -26,6 +26,7 @@ void enviar_pedido(Fila *f, No **cabeca) {
         novo_no->proximo = NULL;
         novo_no->identificador_mesa = atual->identificador_mesa;
         strcpy(novo_no->prato, atual->prato);
+        strcpy(novo_no->tipo, atual->tipo);
         
         if (esta_vazia(f)){
             f->inicio = novo_no;
