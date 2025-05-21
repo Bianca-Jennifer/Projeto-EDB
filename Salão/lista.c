@@ -34,13 +34,10 @@ void adicionar_pedido_inicio(No **cabeca, int identificador_mesa) {
 
     if (numero >= 1 && numero <= 5) {
         novo_no->tipo = 'E';
-    } else {
-        if (numero >= 6 && numero <= 6){
+    } else if (numero >= 6 && numero <= 10) {
             novo_no->tipo = 'P';
-        }
-        if (numero >= 11 && numero <= 15){
+    } else{
             novo_no->tipo = 'S';
-        }
     }
 
     clear();
@@ -130,12 +127,12 @@ void exibir_pedido(No *cabeca) {
         return;
     }
 
-    printf("Pedido:\n");
+    printf("Pedido atual:\n");
 
     No *atual = cabeca;
     
     while(atual != NULL){
-        printf("--> %s----%c\n", atual->prato,atual->tipo);
+        printf("--> [%c] %s\n", atual->tipo, atual->prato);
         atual = atual->proximo;
     }
 }

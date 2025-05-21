@@ -57,8 +57,8 @@ void menu(Fila *f, No **cabeca) {
 
                             do {
                                 printf("\n");
-                                printf("\n");
                                 exibir_pedido(*cabeca);
+                                printf("\n");
                                 printf("1. Adição direta\n");
                                 printf("2. Adição manual\n");
                                 printf("0. Voltar ao menu\n");

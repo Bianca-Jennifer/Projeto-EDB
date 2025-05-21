@@ -18,7 +18,7 @@ void enviar_pedido(Fila *f, No **cabeca) {
     while (atual != NULL) {
         No *novo_no = (No *)malloc(sizeof(No));
         if (!novo_no){
-            printf("  => Erro ao alocar memória!\n");
+            printf("--> Erro ao alocar memória!\n");
             return;
         }
 
@@ -53,7 +53,7 @@ void exibir_fila(Fila *f) {
 
     No *temp = f->inicio;
     while(temp != NULL) {
-        printf("--> %s -------- Mesa %d\n", temp->prato, temp->identificador_mesa);
+        printf("--> [%c] %s -------- [Mesa %d]\n", temp->tipo, temp->prato, temp->identificador_mesa);
         temp = temp->proximo;
     }
 }
