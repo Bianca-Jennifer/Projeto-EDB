@@ -45,6 +45,8 @@ void menu(Fila *f, No **cabeca) {
 
                             if(*cabeca == NULL) {
                                 adicionar_pedido_inicio(cabeca, identificador_mesa);
+                                //numero_tipo_adicao = 0;
+                                break;
                             }
 
                             if(*cabeca == NULL) {
@@ -55,6 +57,8 @@ void menu(Fila *f, No **cabeca) {
 
                             do {
                                 printf("\n");
+                                printf("\n");
+                                exibir_pedido(*cabeca);
                                 printf("1. Adição direta\n");
                                 printf("2. Adição manual\n");
                                 printf("0. Voltar ao menu\n");
@@ -66,6 +70,7 @@ void menu(Fila *f, No **cabeca) {
                                     case 1:
                                         clear();
                                         adicionar_pedido_fim(cabeca, identificador_mesa);
+                                        numero_tipo_adicao = 0;
                                         break;
                                     case 2:
                                         clear();
@@ -82,6 +87,7 @@ void menu(Fila *f, No **cabeca) {
                                             case 1:
                                                 clear();
                                                 adicionar_pedido_inicio(cabeca, identificador_mesa);
+                                                numero_tipo_adicao = 0;
                                                 break;
                                             case 2: 
                                                 clear();
@@ -90,6 +96,7 @@ void menu(Fila *f, No **cabeca) {
                                             case 3:
                                                 clear();
                                                 adicionar_pedido_fim(cabeca, identificador_mesa);
+                                                numero_tipo_adicao = 0;
                                                 break;
                                             case 0:
                                                 clear();

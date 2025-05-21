@@ -12,6 +12,7 @@ typedef struct no {
     int item;
     char prato[45];
     int identificador_mesa;
+    char tipo;
     struct no *proximo;
 } No;
 
