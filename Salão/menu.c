@@ -120,6 +120,7 @@ void menu(Fila *f, No **cabeca) {
 
                                 if(lista_unitaria(*cabeca)) {
                                     remover_pedido_inicio(cabeca);
+                                    printf("--> O pedido agora está vazio.\n");
                                     numero_menu_remover = 0;
                                     break;
                                 }
@@ -220,8 +221,9 @@ void menu(Fila *f, No **cabeca) {
                     }
                 } while(numero_cozinha != 0);
                 break;
-            case 3:
+            case 0:
                 numero_menu = 0;
+                break;
             default:
                 clear();
                 printf("Opção inválida. Por favor, tente novamente.\n");
