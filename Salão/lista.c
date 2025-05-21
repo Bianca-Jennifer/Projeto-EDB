@@ -32,6 +32,17 @@ void adicionar_pedido_inicio(No **cabeca, int identificador_mesa) {
     novo_no->proximo = *cabeca;
     *cabeca = novo_no;
 
+    if (numero >= 1 && numero <= 5) {
+        novo_no->tipo = 'E';
+    } else {
+        if (numero >= 6 && numero <= 6){
+            novo_no->tipo = 'P';
+        }
+        if (numero >= 11 && numero <= 15){
+            novo_no->tipo = 'S';
+        }
+    }
+
     clear();
     printf("--> %s foi adicionado ao pedido!\n", prato);
 }
@@ -124,7 +135,7 @@ void exibir_pedido(No *cabeca) {
     No *atual = cabeca;
     
     while(atual != NULL){
-        printf("--> %s\n", atual->prato);
+        printf("--> %s----%c\n", atual->prato,atual->tipo);
         atual = atual->proximo;
     }
 }
