@@ -181,6 +181,35 @@ void remover_pedido_inicio(No **cabeca) {
     free(temp);
 }
 
+void remover_pedido_meio(No **cabeca) {
+    int posicao;
+
+    exibir_pedido(*cabeca);
+    printf("\nEscolha uma posição para remover o prato: ");
+    scanf("%d", &posicao);
+
+    No *anterior = NULL;
+    No *atual = *cabeca;
+    int i = 1;
+
+    while (atual != NULL && i < posicao){
+        anterior = atual;
+        atual = atual->proximo;
+        i++;
+    }
+
+    if (atual == NULL){
+        printf("Posição inválida!\n");
+        return;
+    }
+
+    anterior->proximo = atual->proximo;
+    clear();
+    printf("--> %s foi removido do pedido com sucesso!\n", atual->prato);
+    free(atual);
+
+}
+
 void remover_pedido_fim(No **cabeca) {
     if(*cabeca == NULL || (*cabeca)->proximo == NULL) {
         remover_pedido_inicio(cabeca);
