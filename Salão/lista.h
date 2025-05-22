@@ -25,6 +25,7 @@ void adicionar_pedido_inicio(No **cabeca, int identificador_mesa);
 void adicionar_pedido_fim(No **cabeca, int identificador_mesa);
 void adicionar_pedido_meio(No **cabeca, int identificador_mesa);
 void remover_pedido_inicio(No **cabeca);
+void remover_pedido_meio(No **cabeca);
 void remover_pedido_fim(No **cabeca);
 void exibir_pedido(No *cabeca);
 const char* converte_prato(int numero);
