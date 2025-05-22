@@ -4,7 +4,8 @@
 #include "fila.h"
 
 void menu(Fila *f, No **cabeca) {
-    int numero_menu, numero_salao, numero_cozinha, numero_adicionar, numero_remover;
+    int numero_menu, numero_salao, numero_cozinha, numero_remover;
+    int numero_adicionar = -1;
     int numero_menu_adicionar = -1;
     int numero_tipo_adicao = -1;
     int numero_menu_remover = -1;
@@ -49,16 +50,9 @@ void menu(Fila *f, No **cabeca) {
                                 break;
                             }
 
-                            if(*cabeca == NULL) {
-                                clear();
-                                printf("Este item não está no cardápio... Por favor, Tente novamente.\n");
-                                break;
-                            }
-
                             do {
-                                printf("\n");
-                                printf("\n");
                                 exibir_pedido(*cabeca);
+                                printf("\n");
                                 printf("1. Adição direta\n");
                                 printf("2. Adição manual\n");
                                 printf("0. Voltar ao menu\n");
@@ -74,6 +68,7 @@ void menu(Fila *f, No **cabeca) {
                                         break;
                                     case 2:
                                         clear();
+                                        exibir_pedido(*cabeca);
                                         printf("\n");
                                         printf("1. Adicionar pedido no início\n");
                                         printf("2. Adicionar pedido no meio\n");
@@ -91,7 +86,7 @@ void menu(Fila *f, No **cabeca) {
                                                 break;
                                             case 2: 
                                                 clear();
-                                                //adicionar_pedido_meio(cabeca, identificador_mesa);
+                                                adicionar_pedido_meio(cabeca, identificador_mesa);
                                                 break;
                                             case 3:
                                                 clear();
@@ -100,11 +95,13 @@ void menu(Fila *f, No **cabeca) {
                                                 break;
                                             case 0:
                                                 clear();
+                                                numero_tipo_adicao = 0;
                                                 break;
                                             default:
                                                 clear();
                                                 printf("Opção inválida. Por favor, tente novamente.\n");
                                         }
+                                        break;
                                     case 0:
                                         clear();
                                         numero_tipo_adicao = 0;
@@ -117,7 +114,6 @@ void menu(Fila *f, No **cabeca) {
                             break;
                         case 2:
                             clear();
-
                             do {
                                 if(*cabeca == NULL) {
                                     remover_pedido_inicio(cabeca);
@@ -146,14 +142,17 @@ void menu(Fila *f, No **cabeca) {
                                     case 1:
                                         clear();
                                         remover_pedido_inicio(cabeca);
+                                        numero_menu_remover = 0;
                                         break;
                                     case 2: 
                                         clear();
                                         //remover_pedido_meio(cabeca);
+                                        numero_menu_remover = 0;
                                         break;
                                     case 3:
                                         clear();
                                         remover_pedido_fim(cabeca);
+                                        numero_menu_remover = 0;
                                         break;
                                     case 0:
                                         numero_menu_remover = 0;
@@ -229,6 +228,7 @@ void menu(Fila *f, No **cabeca) {
                 } while(numero_cozinha != 0);
                 break;
             case 0:
+                liberar_fila(f);
                 numero_menu = 0;
                 break;
             default:

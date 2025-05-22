@@ -18,7 +18,7 @@ void enviar_pedido(Fila *f, No **cabeca) {
     while (atual != NULL) {
         No *novo_no = (No *)malloc(sizeof(No));
         if (!novo_no){
-            printf("  => Erro ao alocar memória!\n");
+            printf("--> Erro ao alocar memória!\n");
             return;
         }
 
@@ -26,7 +26,7 @@ void enviar_pedido(Fila *f, No **cabeca) {
         novo_no->proximo = NULL;
         novo_no->identificador_mesa = atual->identificador_mesa;
         strcpy(novo_no->prato, atual->prato);
-        strcpy(novo_no->tipo, atual->tipo);
+        novo_no->tipo = atual->tipo;
         
         if (esta_vazia(f)){
             f->inicio = novo_no;
@@ -53,7 +53,7 @@ void exibir_fila(Fila *f) {
 
     No *temp = f->inicio;
     while(temp != NULL) {
-        printf("--> %s -------- Mesa %d\n", temp->prato, temp->identificador_mesa);
+        printf("--> [%c] %s -------- [Mesa %d]\n", temp->tipo, temp->prato, temp->identificador_mesa);
         temp = temp->proximo;
     }
 }
@@ -191,13 +191,15 @@ void busca_na_fila(Fila *f){
     } while(op != 0);
 }
 
-/*void liberar_fila(Fila *f) {
-    if(esta_vazia(f)) {
-        printf("--> Não há nenhum pedido sendo preparado na cozinha!\n");
-        return -1;
+void liberar_fila(Fila *f) {
+    No *atual = f->inicio;
+
+    while(atual != NULL) {
+        No* temp = atual;
+        atual = atual->proximo;
+        free(temp);
     }
 
-    No *temp = f->inicio;
-
-    int valor = temp->
-}*/
+    f->inicio = NULL;
+    f->fim = NULL;
+}
