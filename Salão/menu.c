@@ -228,6 +228,7 @@ void menu(Fila *f, No **cabeca) {
                 } while(numero_cozinha != 0);
                 break;
             case 0:
+                liberar_fila(f);
                 numero_menu = 0;
                 break;
             default:

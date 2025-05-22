@@ -191,13 +191,15 @@ void busca_na_fila(Fila *f){
     } while(op != 0);
 }
 
-/*void liberar_fila(Fila *f) {
-    if(esta_vazia(f)) {
-        printf("--> Não há nenhum pedido sendo preparado na cozinha!\n");
-        return -1;
+void liberar_fila(Fila *f) {
+    No *atual = f->inicio;
+
+    while(atual != NULL) {
+        No* temp = atual;
+        atual = atual->proximo;
+        free(temp);
     }
 
-    No *temp = f->inicio;
-
-    int valor = temp->
-}*/
+    f->inicio = NULL;
+    f->fim = NULL;
+}
