@@ -64,8 +64,8 @@ void adicionar_pedido_fim(No **cabeca, int identificador_mesa) {
 
     No *novo_no = malloc(sizeof(No));
     if(novo_no == NULL) {
-    printf("  => Erro ao alocar memória!\n");
-    return;
+        printf("  => Erro ao alocar memória!\n");
+        return;
     }
 
     if (numero >= 1 && numero <= 5) {
@@ -91,6 +91,78 @@ void adicionar_pedido_fim(No **cabeca, int identificador_mesa) {
     }
 
     atual->proximo = novo_no;
+
+    clear();
+    printf("--> %s foi adicionado ao pedido!\n", prato);
+}
+
+void adicionar_pedido_meio(No **cabeca, int identificador_mesa) {
+    int posicao;
+
+    exibir_pedido(*cabeca);
+    printf("\nEscolha uma posição para adicionar o prato: ");
+    scanf("%d", &posicao);
+
+    if(posicao == 0) {
+        adicionar_pedido_inicio(cabeca, identificador_mesa);
+        return;
+    }
+
+    clear();
+    cardapio();
+
+    printf("Escolha um item para adicionar: ");
+    int numero;
+    scanf("%d", &numero);
+
+    if(numero < 1 || numero > 15) {
+        clear();
+        printf("Este item não está no cardápio... Por favor, Tente novamente.\n");
+        return;
+    }
+
+    No *anterior = NULL;
+    No *atual = *cabeca;
+    int i = 1;
+
+    while(atual != NULL && i < posicao) {
+        anterior = atual;
+        atual = atual->proximo;
+        i++;
+    }
+
+    if(atual == NULL) {
+        printf("Posição inválida!\n");
+        return;
+    }
+
+    No *novo_no = malloc(sizeof(No));
+    if(novo_no == NULL) {
+        printf("  => Erro ao alocar memória!\n");
+        return;
+    }
+
+    if (numero >= 1 && numero <= 5) {
+        novo_no->tipo = 'E';
+    } else if (numero >= 6 && numero <= 10) {
+        novo_no->tipo = 'P';
+    } else if (numero >= 11 && numero <= 15) {
+        novo_no->tipo = 'S';
+    }
+
+    novo_no->item = numero;
+    novo_no->identificador_mesa = identificador_mesa;
+
+    const char *prato = converte_prato(numero);
+    strncpy(novo_no->prato, prato, sizeof(novo_no->prato) - 1);
+    novo_no->prato[sizeof(novo_no->prato) - 1] = '\0';
+    novo_no->proximo = atual;
+
+    if(anterior != NULL) {
+        anterior->proximo = novo_no;
+    } else {
+        *cabeca = novo_no;
+    }
 
     clear();
     printf("--> %s foi adicionado ao pedido!\n", prato);
@@ -138,10 +210,12 @@ void exibir_pedido(No *cabeca) {
     printf("Pedido atual:\n");
 
     No *atual = cabeca;
+    int i = 1;
     
     while(atual != NULL){
-        printf("--> [%c] %s\n", atual->tipo, atual->prato);
+        printf("    %d. [%c] %s\n", i, atual->tipo, atual->prato);
         atual = atual->proximo;
+        i++;
     }
 }
 

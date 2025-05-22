@@ -51,7 +51,6 @@ void menu(Fila *f, No **cabeca) {
                             }
 
                             do {
-                                printf("\n");
                                 exibir_pedido(*cabeca);
                                 printf("\n");
                                 printf("1. Adição direta\n");
@@ -69,6 +68,7 @@ void menu(Fila *f, No **cabeca) {
                                         break;
                                     case 2:
                                         clear();
+                                        exibir_pedido(*cabeca);
                                         printf("\n");
                                         printf("1. Adicionar pedido no início\n");
                                         printf("2. Adicionar pedido no meio\n");
@@ -86,7 +86,7 @@ void menu(Fila *f, No **cabeca) {
                                                 break;
                                             case 2: 
                                                 clear();
-                                                //adicionar_pedido_meio(cabeca, identificador_mesa);
+                                                adicionar_pedido_meio(cabeca, identificador_mesa);
                                                 break;
                                             case 3:
                                                 clear();
@@ -103,7 +103,7 @@ void menu(Fila *f, No **cabeca) {
                                         }
                                         break;
                                     case 0:
-                                        clear(); // ESSE AQUI TA FODA
+                                        clear();
                                         numero_tipo_adicao = 0;
                                         break;
                                     default:
