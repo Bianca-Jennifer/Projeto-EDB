@@ -12,5 +12,5 @@ void remover_na_fila(Fila *f);
 void busca_geral_na_fila(Fila *f);
 void busca_por_mesa_na_fila(Fila *f);
 void busca_na_fila(Fila *f);
-//void liberar_fila(Fila *f);
+void liberar_fila(Fila *f);
 #endif
