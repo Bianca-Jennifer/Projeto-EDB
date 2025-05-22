@@ -87,6 +87,7 @@ void menu(Fila *f, No **cabeca) {
                                             case 2: 
                                                 clear();
                                                 adicionar_pedido_meio(cabeca, identificador_mesa);
+                                                 numero_tipo_adicao = 0;
                                                 break;
                                             case 3:
                                                 clear();
@@ -146,7 +147,7 @@ void menu(Fila *f, No **cabeca) {
                                         break;
                                     case 2: 
                                         clear();
-                                        //remover_pedido_meio(cabeca);
+                                        remover_pedido_meio(cabeca);
                                         numero_menu_remover = 0;
                                         break;
                                     case 3:
