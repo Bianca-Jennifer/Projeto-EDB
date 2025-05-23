@@ -125,6 +125,7 @@ void adicionar_pedido_meio(No **cabeca, int identificador_mesa) {
         return;
     }
 
+    clear();
     cardapio();
 
     printf("Escolha um item para adicionar: ");
