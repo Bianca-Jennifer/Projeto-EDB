@@ -103,8 +103,25 @@ void adicionar_pedido_meio(No **cabeca, int identificador_mesa) {
     printf("\nEscolha uma posição para adicionar o prato: ");
     scanf("%d", &posicao);
 
-    if(posicao == 0) {
+    if(posicao == 0 || posicao == 1) {
+        clear();
         adicionar_pedido_inicio(cabeca, identificador_mesa);
+        return;
+    }
+
+    No *anterior = NULL;
+    No *atual = *cabeca;
+    int i = 1;
+
+    while(atual != NULL && i < posicao) {
+        anterior = atual;
+        atual = atual->proximo;
+        i++;
+    }
+
+    if(atual == NULL) {
+        clear();
+        printf("Posição inválida!\n");
         return;
     }
 
@@ -121,28 +138,13 @@ void adicionar_pedido_meio(No **cabeca, int identificador_mesa) {
         return;
     }
 
-    No *anterior = NULL;
-    No *atual = *cabeca;
-    int i = 1;
-
-    while(atual != NULL && i < posicao) {
-        anterior = atual;
-        atual = atual->proximo;
-        i++;
-    }
-
-    if(atual == NULL) {
-        printf("Posição inválida!\n");
-        return;
-    }
-
     No *novo_no = malloc(sizeof(No));
     if(novo_no == NULL) {
-        printf("  => Erro ao alocar memória!\n");
+        printf("--> Erro ao alocar memória!\n");
         return;
     }
 
-    if (numero >= 1 && numero <= 5) {
+    if(numero >= 1 && numero <= 5) {
         novo_no->tipo = 'E';
     } else if (numero >= 6 && numero <= 10) {
         novo_no->tipo = 'P';
@@ -188,6 +190,12 @@ void remover_pedido_meio(No **cabeca) {
     printf("\nEscolha uma posição para remover o prato: ");
     scanf("%d", &posicao);
 
+    if(posicao == 0 || posicao == 1) {
+        clear();
+        remover_pedido_inicio(cabeca);
+        return;
+    }
+
     No *anterior = NULL;
     No *atual = *cabeca;
     int i = 1;
@@ -199,6 +207,7 @@ void remover_pedido_meio(No **cabeca) {
     }
 
     if (atual == NULL){
+        clear();
         printf("Posição inválida!\n");
         return;
     }
