@@ -1,5 +1,5 @@
 #include "fila.h"
-#include "menu.h"
+#include "../Base/menu.h"
 #include "string.h"
 
 void iniciar_fila(Fila *f) {
@@ -169,7 +169,7 @@ void busca_na_fila(Fila *f){
         printf("1. Busca geral\n");
         printf("2. Busca por mesa\n");
         printf("0. Voltar\n");
-        printf("\nEscolha uma opção para prosseguir: \n");
+        printf("\nEscolha uma opção para prosseguir: ");
 
         scanf("%d",&op);
         //while

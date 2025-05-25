@@ -1,7 +1,7 @@
 #ifndef FILA_H
 #define FILA_H
 
-#include "lista.h"
+#include "../Salao/lista.h"
 #include <stdbool.h>
 
 void iniciar_fila(Fila *f);

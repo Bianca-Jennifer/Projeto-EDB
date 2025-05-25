@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "cardapio.h"
+#include "../Base/cardapio.h"
 
 // Definição da lista simplesmente encadeada de pedidos, que contém: item 
 // do prato, nome do prato, tipo do prato (entrada [E], prato principal [P], 
