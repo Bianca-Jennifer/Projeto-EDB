@@ -1,7 +1,7 @@
 #include "menu.h"
 #include "cardapio.h"
-#include "lista.h"
-#include "fila.h"
+#include "../Salao/lista.h"
+#include "../Cozinha/fila.h"
 
 void menu(Fila *f, No **cabeca) {
     int numero_menu, numero_salao, numero_cozinha, numero_remover;
