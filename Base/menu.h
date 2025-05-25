@@ -2,7 +2,7 @@
 #define MENU_H
 
 #include <stdio.h>
-#include "lista.h"
+#include "../Salao/lista.h"
 
 void menu(Fila *fila, No **cabeca);
 void clear();

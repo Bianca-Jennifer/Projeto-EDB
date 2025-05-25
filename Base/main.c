@@ -1,8 +1,7 @@
 #include <stdio.h>
-#include "lista.h"
+#include "../Salao/lista.h"
 #include "menu.h"
-#include "fila.h"
-
+#include "../Cozinha/fila.h"
 
 int numero;
 
