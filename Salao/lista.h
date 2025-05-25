@@ -27,15 +27,16 @@ typedef struct fila {
     No *fim;
 } Fila;
 
-void adicionar_pedido_inicio(No **cabeca, int identificador_mesa);
-void adicionar_pedido_fim(No **cabeca, int identificador_mesa);
-void adicionar_pedido_meio(No **cabeca, int identificador_mesa);
-void remover_pedido_inicio(No **cabeca);
-void remover_pedido_meio(No **cabeca);
-void remover_pedido_fim(No **cabeca);
-void exibir_pedido(No *cabeca);
-const char* converte_prato(int numero);
-void reiniciar_lista(No **cabeca);
-bool lista_unitaria(No *cabeca);
+void adicionar_pedido_inicio(No **cabeca, int identificador_mesa); // Adiciona um novo nó ao início da lista.
+void adicionar_pedido_fim(No **cabeca, int identificador_mesa); // Adiciona um novo nó ao fim da lista.
+void adicionar_pedido_meio(No **cabeca, int identificador_mesa); // Adiciona um novo nó na posição escolhida pelo usuário, caso
+                                                                 // ela não esteja vazia.
+void remover_pedido_inicio(No **cabeca); // Remove o primeiro nó da lista.
+void remover_pedido_meio(No **cabeca); // Remove o nó da posição escolhida pelo usuário, caso ela não esteja vazia.
+void remover_pedido_fim(No **cabeca); // Remove o último nó da lista
+void exibir_pedido(No *cabeca); // Imprime todos os pedidos feitos atualmente, exibindo uma lista numerada com o tipo e nome de cada prato.
+const char* converte_prato(int numero); // Converte o número do item do cardápio no nome do prato.
+void reiniciar_lista(No **cabeca); // Esvazia a lista.
+bool lista_unitaria(No *cabeca); // Verifica se a lista possui apenas um elemento.
 
 #endif
