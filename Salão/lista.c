@@ -1,124 +1,146 @@
 #include "lista.h"
 #include "menu.h"
 
-// Insere um prato no início da lista de pedidos
-// Precisa ter um while para adicionar quantas vezes quiser
 void adicionar_pedido_inicio(No **cabeca, int identificador_mesa) {
-    cardapio();
 
+    // Exibe cardápio e lê entrada do item que será adicionado.
+    cardapio();
     printf("Escolha um item para adicionar: ");
     int numero;
     scanf("%d", &numero);
 
+    // Verifica se o número lido é válido (se o item está no cardápio).
     if(numero < 1 || numero > 15) {
         clear();
         printf("Este item não está no cardápio... Por favor, Tente novamente.\n");
         return;
     }
 
-
+    // Aloca memória para o novo item.
     No *novo_no = malloc(sizeof(No));
     if(novo_no == NULL) {
         printf("--> Erro ao alocar memória!\n");
         return;
     }
 
+    // Define o tipo do prato de acordo com o intervalo em que o item está.
     if (numero >= 1 && numero <= 5) {
-        novo_no->tipo = 'E';
+        novo_no->tipo = 'E'; // Entrada
     } else if (numero >= 6 && numero <= 10) {
-        novo_no->tipo = 'P';
+        novo_no->tipo = 'P'; // Prato principal
     } else if (numero >= 11 && numero <= 15) {
-        novo_no->tipo = 'S';
+        novo_no->tipo = 'S'; // Sobremasa
     }
 
+    // Atribui o item e o identificador da mesa do novo pedido.
     novo_no->item = numero;
     novo_no->identificador_mesa = identificador_mesa;
 
+    // Cria uma variável char contante que recebe uma função para converter
+    // o item no nome do prato.
     const char *prato = converte_prato(numero);
+
+    // Copia o conteúdo da variável prato para o atributo prato do novo nó e completa com o caracter nulo.
     strncpy(novo_no->prato, prato, sizeof(novo_no->prato) - 1);
     novo_no->prato[sizeof(novo_no->prato) - 1] = '\0';
     novo_no->proximo = *cabeca;
     *cabeca = novo_no;
 
+    // Limpa o terminal e imprime que o pedido foi adicionado.
     clear();
     printf("--> %s foi adicionado ao pedido!\n", prato);
 }
 
 void adicionar_pedido_fim(No **cabeca, int identificador_mesa) {
+
+    // Verifica se a lista está vazia. Caso esteja, a função de adicionar pedido no início é chamada.
     if(*cabeca == NULL) {
         adicionar_pedido_inicio(cabeca, identificador_mesa);
         return;
     }
 
+    // Exibe cardápio e lê entrada do item que será adicionado.
     cardapio();
-
     printf("Escolha um item para adicionar: ");
     int numero;
     scanf("%d", &numero);
 
+    // Verifica se o número lido é válido (se o item está no cardápio).
     if(numero < 1 || numero > 15) {
         clear();
         printf("Este item não está no cardápio... Por favor, Tente novamente.\n");
         return;
     }
 
+    // Aloca memória para o novo item.
     No *novo_no = malloc(sizeof(No));
     if(novo_no == NULL) {
         printf("  => Erro ao alocar memória!\n");
         return;
     }
 
+    // Define o tipo do prato de acordo com o intervalo em que o item está.
     if (numero >= 1 && numero <= 5) {
-        novo_no->tipo = 'E';
+        novo_no->tipo = 'E'; // Entrada
     } else if (numero >= 6 && numero <= 10) {
-        novo_no->tipo = 'P';
+        novo_no->tipo = 'P'; // Prato principal
     } else if (numero >= 11 && numero <= 15) {
-        novo_no->tipo = 'S';
+        novo_no->tipo = 'S'; // Sobremasa
     }
 
+    // Atribui o item e o identificador da mesa do novo pedido.
     novo_no->item = numero;
     novo_no->identificador_mesa = identificador_mesa;
 
+    // Copia o conteúdo da variável prato para o atributo prato do novo nó e completa com o caracter nulo.
     const char *prato = converte_prato(numero);
     strncpy(novo_no->prato, prato, sizeof(novo_no->prato) - 1);
     novo_no->prato[sizeof(novo_no->prato) - 1] = '\0';
     novo_no->proximo = NULL;
 
+    // Define um novo No para percorrer a lista até o próximo elemento aponte pro NULL. Quando isso ocorrer,
+    // o próximo nó do nó atual recebe o novo nó, inserindo ele no final da lista.
     No *atual = *cabeca;
-
     while(atual->proximo != NULL) {
         atual = atual->proximo;
     }
-
     atual->proximo = novo_no;
 
+    // Limpa o terminal e imprime que o pedido foi adicionado.
     clear();
     printf("--> %s foi adicionado ao pedido!\n", prato);
 }
 
 void adicionar_pedido_meio(No **cabeca, int identificador_mesa) {
-    int posicao;
 
+    // Exibe o pedido atual através da função exibir pedido e lê a posição em que o item será adicionado.
+    int posicao;
     exibir_pedido(*cabeca);
     printf("\nEscolha uma posição para adicionar o prato: ");
     scanf("%d", &posicao);
 
+    // Verifica se a posição que o usuário quer adicionar é o início do pedido. Caso seja, a função
+    // adicionar pedido no início é chamada.
     if(posicao == 0 || posicao == 1) {
         clear();
         adicionar_pedido_inicio(cabeca, identificador_mesa);
         return;
     }
 
+    // Define dois nós de controle para um item anterior e um posterior ao novo nó que será adicionado.
     No *anterior = NULL;
     No *atual = *cabeca;
-    int i = 1;
+    int i = 1; // Variável contadora para garantir que o novo nó seja adicionado na posição correta.
 
+    // Laço para chegar ao nó anterior a posição escolhida. A condição de parada é que o atual não seja nulo
+    // e o contador i seja menor que a posição.
     while(atual != NULL && i < posicao) {
         anterior = atual;
         atual = atual->proximo;
         i++;
     }
 
+    // 
     if(atual == NULL) {
         clear();
         printf("Posição inválida!\n");
@@ -184,7 +206,7 @@ void remover_pedido_inicio(No **cabeca) {
 
 void remover_pedido_meio(No **cabeca) {
     int posicao;
-
+    
     exibir_pedido(*cabeca);
     printf("\nEscolha uma posição para remover o prato: ");
     scanf("%d", &posicao);
@@ -215,7 +237,6 @@ void remover_pedido_meio(No **cabeca) {
     clear();
     printf("--> %s foi removido do pedido com sucesso!\n", atual->prato);
     free(atual);
-
 }
 
 void remover_pedido_fim(No **cabeca) {
