@@ -2,6 +2,6 @@
 #define CARDAPIO_H
 #include <stdio.h>
 
-void cardapio();
+void cardapio();//Contém as opções de pratos(entrada,principal e sobremesa)
 
 #endif
