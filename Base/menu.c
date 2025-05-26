@@ -12,6 +12,7 @@ void menu(Fila *f, No **cabeca) {
 
     clear();
 
+    //------------Menu Inicial--------------
     do {
         printf("\n");
         printf("1. Salão\n");
@@ -28,6 +29,8 @@ void menu(Fila *f, No **cabeca) {
                 int identificador_mesa;
                 printf("Digite o número da mesa: ");
                 scanf("%d",&identificador_mesa);
+
+                //------------Menu Salão--------------
                 do {
                     printf("\n");
                     printf("============== Mesa %d ==============\n", identificador_mesa);
@@ -41,12 +44,12 @@ void menu(Fila *f, No **cabeca) {
                     scanf("%d", &numero_salao);
 
                     switch (numero_salao) {
+                        //Adicionar pedido
                         case 1: 
                             clear();
 
                             if(*cabeca == NULL) {
                                 adicionar_pedido_inicio(cabeca, identificador_mesa);
-                                //numero_tipo_adicao = 0;
                                 break;
                             }
 
@@ -113,6 +116,7 @@ void menu(Fila *f, No **cabeca) {
                                 }                                        
                             } while (numero_tipo_adicao != 0);
                             break;
+                        //Remover pedido    
                         case 2:
                             clear();
                             do {
@@ -165,15 +169,18 @@ void menu(Fila *f, No **cabeca) {
                                 }
                             } while (numero_menu_remover != 0);
                             break;
+                        //Exibir pedidos/lista    
                         case 3:
                             clear();
                             exibir_pedido(*cabeca);
                             break;
+                        //Enviar pedidos para fila/cozinha    
                         case 4:
                             clear();
                             enviar_pedido(f, cabeca);
                             numero_salao = 0;
                             break;
+                        //Voltar ao menu inicial    
                         case 0:
                             if(*cabeca != NULL) {
                                 clear();
@@ -192,6 +199,7 @@ void menu(Fila *f, No **cabeca) {
                     }
                 } while(numero_salao != 0);
                 break;
+            //------------Menu Cozinha--------------  
             case 2:
                 clear();
                 do {
@@ -205,19 +213,23 @@ void menu(Fila *f, No **cabeca) {
                     scanf("%d", &numero_cozinha);
 
                     switch(numero_cozinha) {
+                        //Exibir fila
                         case 1:
                             clear();
                             exibir_fila(f);
                             break;
+                        //Remover primeiro nó da fila    
                         case 2:
                             clear();
                             remover_na_fila(f);
                             break;
+                        //Verifica se determinado prato existe na cozinha(busca geral e por mesa)    
                         case 3:
                             clear();
                             busca_na_fila(f);
                             clear();
-                            break;          
+                            break;   
+                        //Volta ao menu inicial           
                         case 0:
                             numero_cozinha = 0;
                             clear();
@@ -228,6 +240,7 @@ void menu(Fila *f, No **cabeca) {
                     }
                 } while(numero_cozinha != 0);
                 break;
+            //Sair do programa/fim    
             case 0:
                 liberar_fila(f);
                 numero_menu = 0;
