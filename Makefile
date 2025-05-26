@@ -28,5 +28,8 @@ arquivos_obj/menu.o: Base/menu.c Base/menu.h Base/cardapio.h Salao/lista.h Cozin
 
 
 #------------Remoção de executável e arquivos obj.--------------
-clean:
-	rm -f main arquivos_obj/*.o
+clean_Linux:
+	rm -f main
+
+clean_Windows:
+	del main
